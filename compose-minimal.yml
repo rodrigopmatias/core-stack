@@ -1,31 +1,6 @@
 version: "3.6"
 
 services:
-  reg-rw:
-    image: registry:2
-    environment:
-      REGISTRY_AUTH: htpasswd
-      REGISTRY_AUTH_HTPASSWD_REALM: Registry Realm
-      REGISTRY_AUTH_HTPASSWD_PATH: /certs/passwd
-      REGISTRY_HTTP_TLS_CERTIFICATE: /certs/chain.pem
-      REGISTRY_HTTP_TLS_KEY: /certs/pkey.pem
-      REGISTRY_HTTP_ADDR: 0.0.0.0:443
-    volumes:
-      - ${PWD}/certs:/certs
-      - reg-data:/var/lib/registry
-    ports:
-      - 5443:443
-  reg-ro:
-    image: registry:2
-    environment:
-      REGISTRY_HTTP_TLS_CERTIFICATE: /certs/chain.pem
-      REGISTRY_HTTP_TLS_KEY: /certs/pkey.pem
-      REGISTRY_HTTP_ADDR: 0.0.0.0:443
-    volumes:
-      - ${PWD}/certs:/certs
-      - reg-data:/var/lib/registry
-    ports:
-      - 6443:443
   port-agent:
     image: portainer/agent
     environment:
@@ -59,7 +34,6 @@ services:
 
 volumes:
   port_data:
-  reg-data:
 
 networks:
   portainer_agent:
