@@ -1,5 +1,5 @@
 CA/index.txt.*
 CA/*.pem
-CA/*/**.pem
+**/*.pem
 CA/serial.old
 certs/*

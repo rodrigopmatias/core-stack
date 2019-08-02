@@ -46,7 +46,6 @@ services:
         constraints: [node.platform.os == linux]
   port:
     image: portainer/portainer
-    command: --ssl --sslcert /certs/chain.pem --sslkey /certs/pkey.pem
     volumes:
       - ${PWD}/certs:/certs
       - /var/run/docker.sock:/var/run/docker.sock
