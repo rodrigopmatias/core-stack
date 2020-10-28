@@ -38,7 +38,7 @@ services:
       placement:
         constraints: [node.platform.os == linux]
   port:
-    image: portainer/portainer
+    image: portainer/portainer-ce
     volumes:
       - ${PWD}/certs:/certs
       - /var/run/docker.sock:/var/run/docker.sock

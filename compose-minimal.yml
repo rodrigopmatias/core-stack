@@ -13,7 +13,7 @@ services:
       placement:
         constraints: [node.platform.os == linux]
   port:
-    image: portainer/portainer
+    image: portainer/portainer-ce
     command: --ssl --sslcert /certs/chain.pem --sslkey /certs/pkey.pem
     volumes:
       - ${PWD}/certs:/certs
