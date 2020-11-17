@@ -43,7 +43,7 @@ services:
     volumes:
       - ${PWD}/certs:/certs
       - /var/run/docker.sock:/var/run/docker.sock
-      - port_data:/data
+      - ${PWD}:/data
     ports:
       - 9999:9000
     deploy:
