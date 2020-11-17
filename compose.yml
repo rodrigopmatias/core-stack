@@ -1,7 +1,7 @@
 version: "3.6"
 
 services:
-  reg-rw:
+  main:
     image: registry:2
     environment:
       REGISTRY_AUTH: htpasswd
@@ -12,10 +12,10 @@ services:
       REGISTRY_HTTP_ADDR: 0.0.0.0:443
     volumes:
       - ${PWD}/certs:/certs
-      - reg-data:/var/lib/registry
+      - ${PWD}/registry:/var/lib/registry
     ports:
       - 5443:443
-  reg-ro:
+  secondary:
     image: registry:2
     environment:
       REGISTRY_HTTP_TLS_CERTIFICATE: /certs/chain.pem
@@ -23,7 +23,7 @@ services:
       REGISTRY_HTTP_ADDR: 0.0.0.0:443
     volumes:
       - ${PWD}/certs:/certs
-      - reg-data:/var/lib/registry
+      - ${PWD}/registry:/var/lib/registry
     ports:
       - 6443:443
   agent:
@@ -49,10 +49,6 @@ services:
     deploy:
       placement:
         constraints: [node.role == manager]
-
-volumes:
-  port_data:
-  reg-data:
 
 networks:
   portainer_agent:
